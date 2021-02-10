@@ -1,19 +1,14 @@
-import {FETCH_DATA, REQUEST_DATA} from '../types';
-/*import {WeatherState} from 'types/State';*/
+import {FETCH_DATA} from '../types';
 import {WeatherDataType} from "../actions/civilizationsActions";
-/*import * as _ from 'lodash';*/
+import {CivilizationsState} from "../../types/State.type";
 
-export const initialState = {}; // as WeatherState
+export const initialState = [] as CivilizationsState;
 
 export const civilizationsReducer = (state = initialState, action: WeatherDataType) => {
     switch (action.type) {
         case FETCH_DATA: {
-            return {...state, ...action.payload};
-        }
-        case REQUEST_DATA: {
-           // const newState = _.cloneDeep(_.omit(state, action.payload));
-            return {...state};
+            return [...state, ...action.payload];
         }
         default: return state
     }
-}
+};

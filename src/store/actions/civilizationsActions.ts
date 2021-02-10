@@ -1,11 +1,11 @@
 import {FETCH_DATA, REQUEST_DATA} from '../types';
-/*import {WeatherState} from "../../types/State";*/
+import {CivilizationsState} from '../../types/State.type';
 
 export const requestData = () => ({
     type: REQUEST_DATA
 } as const);
 
-export const fetchData = (payload: any) => ({ /*WeatherState */
+export const fetchData = (payload: CivilizationsState) => ({ /*WeatherState */
     type: FETCH_DATA,
     payload
 } as const);

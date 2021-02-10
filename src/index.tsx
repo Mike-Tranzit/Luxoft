@@ -8,6 +8,7 @@ import {sagaWatcher} from "./store/sagas/civilizationsSaga";
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import * as serviceWorkerRegistration from './serviceWorkerRegistration';
 
 const saga = createSagaMiddleware();
 const store = createStore(rootReducer, compose(
@@ -25,5 +26,5 @@ ReactDOM.render(
   </React.StrictMode>,
   document.getElementById('root')
 );
-
+serviceWorkerRegistration.register();
 reportWebVitals();

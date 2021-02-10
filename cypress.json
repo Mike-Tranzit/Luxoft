@@ -1,0 +1,6 @@
+{
+  "baseUrl": "http://localhost:4200/",
+  "integrationFolder": "src/tests/e2e/components",
+  "supportFile": "src/tests/e2e/support",
+  "viewportWidth": 1280
+}

@@ -1,8 +1,9 @@
 import {takeEvery, put, call} from 'redux-saga/effects'
 import {REQUEST_DATA} from '../types'
 import {CivilizationsService} from "../../services/CivilizationsService";
-import {CivilizationsState} from "../../types/State.type";
+import {CivilizationsList} from '../../types/Civilizations.type';
 import {showLoader, hideLoader} from 'store/actions/appActions';
+import {showAlert} from 'store/actions/appActions';
 import {fetchData} from 'store/actions/civilizationsActions';
 
 export function* sagaWatcher() {
@@ -14,19 +15,16 @@ function* sagaWorker() {
         yield put(showLoader());
         const payload = yield call(fetch);
         yield put(fetchData(payload));
-        yield put(hideLoader());
     } catch (e) {
         const {message = 'Unknown  error'} = e;
-         //yield put(showAlert(message));
+        yield put(showAlert(message));
+    } finally {
+        yield put(hideLoader());
     }
 }
 
-async function fetch(): Promise<any> { /*WeatherState*/
+async function fetch(): Promise<CivilizationsList> {
     const civilizationsService = new CivilizationsService();
     await civilizationsService.fetchData();
-   /* const weatherService = new WeatherService();
-    await weatherService.fetchData();
-    weatherService.normalizeData();
-    weatherService.sortByAlphabet();
-    return weatherService.normalizedData;*/
+    return civilizationsService.getData();
 }
